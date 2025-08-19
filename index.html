@@ -72,8 +72,9 @@
 	</div>
 </main>
 
-<section id="education" class="p-8 flex flex-col md:flex-row border border-zinc-200 drop-shadow-lg rounded-lg
+<section id="education" class="p-8 flex flex-col md:flex-row border border-zinc-100 drop-shadow-sm rounded-lg
    gap-3 justify-center items-center max-w-4xl  mx-auto">
+   	
 	<div class="text-center p-4 ">
 		<h1 class="text-2xl font-extrabold text-slate-800">Lycee saint alexandre sauli de muhura</h1>
 		<h3 class="p-3 font-extrabold text-2xl text-blue-600">A2</h3>
@@ -123,10 +124,9 @@ justify-center mx-auto text-center rounded-lg mt-5">
 		</div>
 
 		<div class="border border-zinc-100 rounded-lg p-5 md:p-15">
-			<p class="font-semibold capitalize mb-2">Backend web development</p>
+			<p class="font-semibold capitalize mb-2 text-lg md:text-2xl text-zinc-700">Backend web development</p>
 			<div class="flex flex-wrap gap-3 text-sm">
 				<p class="border border-zinc-200 px-3 py-1 rounded-full">PHP</p>
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">MYSQL DB</p>
 				<p class="border border-zinc-200 px-3 py-1 rounded-full">Firebase Auth</p>
 				<p class="border border-zinc-200 px-3 py-1 rounded-full">Restful API</p>
 				<p class="border border-zinc-200 px-3 py-1 rounded-full">Node.js</p>
@@ -134,12 +134,23 @@ justify-center mx-auto text-center rounded-lg mt-5">
 			</div>
 		</div>
 
-		<div class="border border-zinc-100 rounded-lg p-5 md:p-15">
-			<p class="font-semibold capitalize mb-2">Graphic Design</p>
+		<div class="border border-zinc-100 rounded-lg  p-5 md:p-15">
+			<p class="font-semibold capitalize mb-2 text-lg md:text-2xl text-zinc-700">Database Design</p>
 			<div class="flex flex-wrap gap-3 text-sm">
-				<p class="bg-indigo-800 text-white px-3 py-1 rounded">Canva</p>
-				<p class="bg-gray-800 text-white px-3 py-1 rounded">Sketch</p>
-				<p class="bg-blue-800 text-white px-3 py-1 rounded">Photoshop</p>
+				<p class="border border-zinc-200 px-3 py-1 rounded-full">MySQL</p>
+				<p class="border border-zinc-200 px-3 py-1 rounded-full">MS SQL</p>
+				<p class="border border-zinc-200 px-3 py-1 rounded-full">PocketBase</p>
+				<p class="border border-zinc-200 px-3 py-1 rounded-full">Firebase Firestore</p>
+			</div>
+		</div>
+
+		<div class="border border-zinc-100 rounded-lg  p-5 md:p-15">
+			<p class="font-semibold capitalize mb-2 text-lg md:text-2xl text-zinc-700">Tools & DevOps</p>
+			<div class="flex flex-wrap gap-3 text-sm">
+				<p class="border border-zinc-200 px-3 py-1 rounded-full">Github</p>
+				<p class="border border-zinc-200 px-3 py-1 rounded-full">Vercel</p>
+				<p class="border border-zinc-200 px-3 py-1 rounded-full">Git</p>
+				<p class="border border-zinc-200 px-3 py-1 rounded-full">Netlify</p>
 			</div>
 		</div>
 
@@ -149,11 +160,13 @@ justify-center mx-auto text-center rounded-lg mt-5">
 	<p class="mt-6 text-sm text-slate-700">I am a quick learner and a team player...</p>
 </section>
 
-<section class="p-6 max-w-5xl w-full flex items-center justify-center flex-col mx-auto"  id="projects">
+<section class="px-4 py-6 max-w-4xl items-center border border-zinc-100 drop-shadow-lg
+justify-center mx-auto text-center rounded-lg mt-5"  id="projects">
 	<h1 class="text-2xl font-semibold capitalize mb-2">Projects</h1>
 	<p class="mb-4">I have worked on several projects...</p>
 
-	<div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4 p-6 bg-zinc-100 rounded-lg shadow-lg">
+	<div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4 p-6 bg-zinc-5
+	0 rounded-lg">
 		<div class=" cursor-pointer">
 			<img src="image/352_1x_shots_so.png" class="w-full object-cover rounded-t">
 			<div class="px-1 py-2 font-semibold lg:text-xl">
@@ -167,15 +180,31 @@ justify-center mx-auto text-center rounded-lg mt-5">
                  		<p class="px-4 py-1 rounded-full border border-zinc-200 text-zinc-700 bg-white">Next.js</p>
                  		<p  class="px-4 py-1 rounded-full border border-zinc-200 text-zinc-700 bg-white">Tailwindcss</p>
                  	</div>
-                 		<div class="my-5 px-2 flex w-25 py-2  rounded-md text-center justify-center  text-white bg-gradient-to-r from-blue-800 to-indigo-900 shadow-lg">
-                 		<a href="" class="decoration-none">visit here</a>
+					<div class="flex gap-3">
+
+					
+                 		<div class="my-5 px-5 flex w-25 py-2  rounded-md text-center justify-center  text-white 
+						 bg-zinc-800 rounded-lg w-fit ">
+                 		<a href="https://go-ship.vercel.app/" class="decoration-none">Live</a>
                  		<span>
-                 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
-</svg>
+                 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+						<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+						</svg>
 
                  		</span>
                  	</div>
+
+					<div class="my-5 px-5 flex w-25 py-2  rounded-lg text-center justify-center  text-zinc-700
+						 border border-zinc-200 rounded-lg w-fit ">
+                 		<a href="https://github.com/alituanfamous/GoShip" class="decoration-none">Github</a>
+                 		<span>
+                 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+						<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+						</svg>
+
+                 		</span>
+                 	</div>
+					</div>
                  </div>
 		</div>
 

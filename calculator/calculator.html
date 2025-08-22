@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unit Converter - Convert Between Different Units</title>
+    <meta name="description" content="A beautiful unit converter app for length, temperature, weight, and time conversions with real-time calculations" />
+    <meta name="author" content="Lovable" />
+
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS for design system -->
+    <style>
+      :root {
+        --background: 0 0% 100%;
+        --foreground: 20 14.3% 4.1%;
+        --card: 0 0% 100%;
+        --card-foreground: 20 14.3% 4.1%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 20 14.3% 4.1%;
+        --primary: 24 9.8% 10%;
+        --primary-foreground: 60 9.1% 97.8%;
+        --primary-glow: 220 70% 50%;
+        --secondary: 60 4.8% 95.9%;
+        --secondary-foreground: 24 9.8% 10%;
+        --muted: 60 4.8% 95.9%;
+        --muted-foreground: 25 5.3% 44.7%;
+        --accent: 60 4.8% 95.9%;
+        --accent-foreground: 24 9.8% 10%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 60 9.1% 97.8%;
+        --border: 20 5.9% 90%;
+        --input: 20 5.9% 90%;
+        --ring: 20 14.3% 4.1%;
+        --radius: 0.5rem;
+        --gradient-primary: linear-gradient(135deg, hsl(220 70% 50%), hsl(220 70% 60%));
+        --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 13% 96%));
+        --shadow-elegant: 0 10px 30px -10px hsl(220 70% 50% / 0.3);
+        --shadow-glow: 0 0 40px hsl(220 70% 50% / 0.4);
+        --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .dark {
+        --background: 20 14.3% 4.1%;
+        --foreground: 60 9.1% 97.8%;
+        --card: 20 14.3% 4.1%;
+        --card-foreground: 60 9.1% 97.8%;
+        --popover: 20 14.3% 4.1%;
+        --popover-foreground: 60 9.1% 97.8%;
+        --primary: 60 9.1% 97.8%;
+        --primary-foreground: 20 14.3% 4.1%;
+        --secondary: 12 6.5% 15.1%;
+        --secondary-foreground: 60 9.1% 97.8%;
+        --muted: 12 6.5% 15.1%;
+        --muted-foreground: 24 5.4% 63.9%;
+        --accent: 12 6.5% 15.1%;
+        --accent-foreground: 60 9.1% 97.8%;
+        --border: 12 6.5% 15.1%;
+        --input: 12 6.5% 15.1%;
+        --ring: 24 5.7% 82.9%;
+      }
+
+      body {
+        background: hsl(var(--background));
+        color: hsl(var(--foreground));
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+
+      .card {
+        background: hsl(var(--card));
+        color: hsl(var(--card-foreground));
+        border: 1px solid hsl(var(--border));
+      }
+
+      .btn-primary {
+        background: var(--gradient-primary);
+        color: hsl(var(--primary-foreground));
+        box-shadow: var(--shadow-elegant);
+        transition: var(--transition-smooth);
+      }
+
+      .btn-primary:hover {
+        box-shadow: var(--shadow-glow);
+        transform: scale(1.05);
+      }
+
+      .input {
+        background: hsl(var(--background));
+        border: 1px solid hsl(var(--border));
+        color: hsl(var(--foreground));
+      }
+
+      .input:focus {
+        border-color: hsl(var(--primary-glow));
+        outline: none;
+        box-shadow: 0 0 0 2px hsl(var(--primary-glow) / 0.2);
+      }
+
+      .tab-active {
+        background: var(--gradient-primary);
+        color: hsl(var(--primary-foreground));
+      }
+
+      .gradient-text {
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      @keyframes fade-in {
+        0% { opacity: 0; transform: translateY(10px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes scale-in {
+        0% { transform: scale(0.95); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+
+      .animate-fade-in { animation: fade-in 0.3s ease-out; }
+      .animate-scale-in { animation: scale-in 0.2s ease-out; }
+
+      .select-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: hsl(var(--card));
+        border: 1px solid hsl(var(--border));
+        border-radius: 0.375rem;
+        z-index: 50;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+
+      .select-dropdown.show {
+        display: block;
+      }
+
+      .select-item {
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .select-item:hover {
+        background: hsl(var(--muted));
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen flex items-center justify-center p-4" style="background: var(--gradient-subtle);">
+    <div class="card w-full max-w-2xl rounded-lg animate-fade-in" style="box-shadow: var(--shadow-elegant);">
+      <!-- Header -->
+      <div class="p-6 pb-4 text-center">
+        <div class="flex items-center justify-center gap-3 mb-2">
+          <div class="p-2 rounded-lg btn-primary" style="box-shadow: var(--shadow-glow);">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h1 class="text-3xl font-bold gradient-text">Unit Converter</h1>
+        </div>
+        <p class="text-gray-600">Convert between different units with real-time calculations</p>
+      </div>
+      
+      <!-- Content -->
+      <div class="p-6 pt-0 space-y-6">
+        <!-- Tabs -->
+        <div class="w-full">
+          <div class="grid grid-cols-4 gap-1 p-1 bg-gray-100 rounded-lg mb-6">
+            <button class="tab-button px-3 py-2 rounded text-sm font-medium transition-all duration-300" data-category="length">Length</button>
+            <button class="tab-button px-3 py-2 rounded text-sm font-medium transition-all duration-300" data-category="temperature">Temperature</button>
+            <button class="tab-button px-3 py-2 rounded text-sm font-medium transition-all duration-300" data-category="weight">Weight</button>
+            <button class="tab-button px-3 py-2 rounded text-sm font-medium transition-all duration-300" data-category="time">Time</button>
+          </div>
+
+          <!-- Conversion Content -->
+          <div class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- From Unit -->
+              <div class="space-y-3">
+                <label class="text-sm font-medium">From</label>
+                <div class="relative">
+                  <button class="w-full input px-3 py-2 rounded-md text-left flex justify-between items-center" id="fromSelect">
+                    <span id="fromSelectValue">Select unit</span>
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  </button>
+                  <div class="select-dropdown" id="fromDropdown"></div>
+                </div>
+                <input type="text" placeholder="Enter value" class="input w-full px-3 py-2 text-lg rounded-md" id="inputValue" />
+              </div>
+
+              <!-- Swap Button -->
+              <div class="flex items-end justify-center pb-3">
+                <button class="p-3 rounded-full btn-primary" id="swapButton" title="Swap units">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- To Unit -->
+              <div class="space-y-3 md:col-start-2">
+                <label class="text-sm font-medium">To</label>
+                <div class="relative">
+                  <button class="w-full input px-3 py-2 rounded-md text-left flex justify-between items-center" id="toSelect">
+                    <span id="toSelectValue">Select unit</span>
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  </button>
+                  <div class="select-dropdown" id="toDropdown"></div>
+                </div>
+                <div class="relative">
+                  <input type="text" readonly class="input w-full px-3 py-2 text-lg rounded-md bg-gray-50" placeholder="Result will appear here" id="resultValue" />
+                  <span class="absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-gray-200 text-xs rounded" id="resultUnit"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Error Message -->
+            <div class="hidden p-3 bg-red-50 border border-red-200 rounded-lg animate-scale-in" id="errorMessage">
+              <p class="text-red-600 text-sm"></p>
+            </div>
+
+            <!-- Result Display -->
+            <div class="hidden p-4 border rounded-lg animate-scale-in" id="resultDisplay" style="background: hsl(var(--primary-glow) / 0.05); border-color: hsl(var(--primary-glow) / 0.2);">
+              <p class="text-sm text-gray-600 mb-1">Conversion Result:</p>
+              <p class="text-lg font-semibold" id="resultText"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Unit categories data
+      const unitCategories = {
+        length: {
+          label: 'Length',
+          units: [
+            { id: 'km', label: 'Kilometers', symbol: 'km' },
+            { id: 'miles', label: 'Miles', symbol: 'mi' },
+            { id: 'm', label: 'Meters', symbol: 'm' },
+            { id: 'ft', label: 'Feet', symbol: 'ft' },
+            { id: 'cm', label: 'Centimeters', symbol: 'cm' },
+            { id: 'in', label: 'Inches', symbol: 'in' }
+          ]
+        },
+        temperature: {
+          label: 'Temperature',
+          units: [
+            { id: 'celsius', label: 'Celsius', symbol: '°C' },
+            { id: 'fahrenheit', label: 'Fahrenheit', symbol: '°F' },
+            { id: 'kelvin', label: 'Kelvin', symbol: 'K' }
+          ]
+        },
+        weight: {
+          label: 'Weight',
+          units: [
+            { id: 'kg', label: 'Kilograms', symbol: 'kg' },
+            { id: 'pounds', label: 'Pounds', symbol: 'lbs' },
+            { id: 'g', label: 'Grams', symbol: 'g' },
+            { id: 'oz', label: 'Ounces', symbol: 'oz' }
+          ]
+        },
+        time: {
+          label: 'Time',
+          units: [
+            { id: 'minutes', label: 'Minutes', symbol: 'min' },
+            { id: 'seconds', label: 'Seconds', symbol: 's' },
+            { id: 'hours', label: 'Hours', symbol: 'h' },
+            { id: 'days', label: 'Days', symbol: 'd' }
+          ]
+        }
+      };
+
+      // App state
+      let activeCategory = 'length';
+      let fromUnit = 'km';
+      let toUnit = 'miles';
+      let inputValue = '';
+      let result = '';
+      let error = '';
+
+      // DOM elements
+      const tabButtons = document.querySelectorAll('.tab-button');
+      const fromSelect = document.getElementById('fromSelect');
+      const toSelect = document.getElementById('toSelect');
+      const fromDropdown = document.getElementById('fromDropdown');
+      const toDropdown = document.getElementById('toDropdown');
+      const fromSelectValue = document.getElementById('fromSelectValue');
+      const toSelectValue = document.getElementById('toSelectValue');
+      const inputField = document.getElementById('inputValue');
+      const resultField = document.getElementById('resultValue');
+      const resultUnit = document.getElementById('resultUnit');
+      const errorMessage = document.getElementById('errorMessage');
+      const resultDisplay = document.getElementById('resultDisplay');
+      const resultText = document.getElementById('resultText');
+      const swapButton = document.getElementById('swapButton');
+
+      // Conversion functions
+      const convertLength = (value, from, to) => {
+        const toMeters = {
+          km: 1000, miles: 1609.34, m: 1, ft: 0.3048, cm: 0.01, in: 0.0254
+        };
+        const meters = value * toMeters[from];
+        return meters / toMeters[to];
+      };
+
+      const convertTemperature = (value, from, to) => {
+        if (from === to) return value;
+        
+        let celsius;
+        switch (from) {
+          case 'fahrenheit':
+            celsius = (value - 32) * 5/9;
+            break;
+          case 'kelvin':
+            celsius = value - 273.15;
+            break;
+          default:
+            celsius = value;
+        }
+        
+        switch (to) {
+          case 'fahrenheit':
+            return celsius * 9/5 + 32;
+          case 'kelvin':
+            return celsius + 273.15;
+          default:
+            return celsius;
+        }
+      };
+
+      const convertWeight = (value, from, to) => {
+        const toGrams = {
+          kg: 1000, pounds: 453.592, g: 1, oz: 28.3495
+        };
+        const grams = value * toGrams[from];
+        return grams / toGrams[to];
+      };
+
+      const convertTime = (value, from, to) => {
+        const toSeconds = {
+          minutes: 60, seconds: 1, hours: 3600, days: 86400
+        };
+        const seconds = value * toSeconds[from];
+        return seconds / toSeconds[to];
+      };
+
+      const performConversion = (value, from, to, category) => {
+        const numValue = parseFloat(value);
+        
+        if (isNaN(numValue)) {
+          return '';
+        }
+
+        let convertedValue;
+        
+        switch (category) {
+          case 'length':
+            convertedValue = convertLength(numValue, from, to);
+            break;
+          case 'temperature':
+            convertedValue = convertTemperature(numValue, from, to);
+            break;
+          case 'weight':
+            convertedValue = convertWeight(numValue, from, to);
+            break;
+          case 'time':
+            convertedValue = convertTime(numValue, from, to);
+            break;
+          default:
+            return '';
+        }
+
+        return convertedValue.toFixed(6).replace(/\.?0+$/, '');
+      };
+
+      // UI functions
+      const updateTabButtons = () => {
+        tabButtons.forEach(button => {
+          if (button.dataset.category === activeCategory) {
+            button.classList.add('tab-active');
+          } else {
+            button.classList.remove('tab-active');
+          }
+        });
+      };
+
+      const populateDropdown = (dropdown, selectValue, currentValue, isFrom) => {
+        const currentUnits = unitCategories[activeCategory].units;
+        dropdown.innerHTML = '';
+        
+        currentUnits.forEach(unit => {
+          const item = document.createElement('div');
+          item.className = 'select-item';
+          item.textContent = `${unit.label} (${unit.symbol})`;
+          item.addEventListener('click', () => {
+            if (isFrom) {
+              fromUnit = unit.id;
+              fromSelectValue.textContent = `${unit.label} (${unit.symbol})`;
+            } else {
+              toUnit = unit.id;
+              toSelectValue.textContent = `${unit.label} (${unit.symbol})`;
+            }
+            dropdown.classList.remove('show');
+            updateResultUnit();
+            if (inputValue) {
+              updateResult();
+            }
+          });
+          dropdown.appendChild(item);
+        });
+      };
+
+      const updateResultUnit = () => {
+        const currentUnits = unitCategories[activeCategory].units;
+        const unit = currentUnits.find(u => u.id === toUnit);
+        if (unit && result) {
+          resultUnit.textContent = unit.symbol;
+          resultUnit.classList.remove('hidden');
+        } else {
+          resultUnit.classList.add('hidden');
+        }
+      };
+
+      const updateResult = () => {
+        if (!inputValue) {
+          result = '';
+          resultField.value = '';
+          resultDisplay.classList.add('hidden');
+          updateResultUnit();
+          return;
+        }
+
+        if (!/^\d*\.?\d*$/.test(inputValue)) {
+          error = 'Please enter a valid number';
+          showError();
+          result = '';
+          resultField.value = '';
+          resultDisplay.classList.add('hidden');
+          updateResultUnit();
+          return;
+        }
+
+        hideError();
+        result = performConversion(inputValue, fromUnit, toUnit, activeCategory);
+        resultField.value = result;
+        updateResultUnit();
+        
+        if (result) {
+          const currentUnits = unitCategories[activeCategory].units;
+          const fromUnitObj = currentUnits.find(u => u.id === fromUnit);
+          const toUnitObj = currentUnits.find(u => u.id === toUnit);
+          resultText.textContent = `${inputValue} ${fromUnitObj?.symbol} = ${result} ${toUnitObj?.symbol}`;
+          resultDisplay.classList.remove('hidden');
+          saveToLocalStorage();
+        }
+      };
+
+      const showError = () => {
+        errorMessage.querySelector('p').textContent = error;
+        errorMessage.classList.remove('hidden');
+        resultDisplay.classList.add('hidden');
+      };
+
+      const hideError = () => {
+        errorMessage.classList.add('hidden');
+      };
+
+      const resetUnits = () => {
+        const categoryUnits = unitCategories[activeCategory].units;
+        fromUnit = categoryUnits[0].id;
+        toUnit = categoryUnits[1].id;
+        fromSelectValue.textContent = `${categoryUnits[0].label} (${categoryUnits[0].symbol})`;
+        toSelectValue.textContent = `${categoryUnits[1].label} (${categoryUnits[1].symbol})`;
+        inputValue = '';
+        result = '';
+        inputField.value = '';
+        resultField.value = '';
+        hideError();
+        resultDisplay.classList.add('hidden');
+        updateResultUnit();
+      };
+
+      const swapUnits = () => {
+        const tempFromUnit = fromUnit;
+        const tempFromValue = fromSelectValue.textContent;
+        
+        fromUnit = toUnit;
+        toUnit = tempFromUnit;
+        fromSelectValue.textContent = toSelectValue.textContent;
+        toSelectValue.textContent = tempFromValue;
+        
+        if (inputValue && result) {
+          const tempInput = inputValue;
+          inputValue = result;
+          result = tempInput;
+          inputField.value = inputValue;
+          resultField.value = result;
+          updateResultUnit();
+          
+          if (result) {
+            const currentUnits = unitCategories[activeCategory].units;
+            const fromUnitObj = currentUnits.find(u => u.id === fromUnit);
+            const toUnitObj = currentUnits.find(u => u.id === toUnit);
+            resultText.textContent = `${inputValue} ${fromUnitObj?.symbol} = ${result} ${toUnitObj?.symbol}`;
+            saveToLocalStorage();
+          }
+        }
+      };
+
+      // Local storage functions
+      const saveToLocalStorage = () => {
+        const data = {
+          category: activeCategory,
+          fromUnit,
+          toUnit,
+          fromValue: inputValue,
+          result
+        };
+        localStorage.setItem('lastConversion', JSON.stringify(data));
+      };
+
+      const loadFromLocalStorage = () => {
+        const saved = localStorage.getItem('lastConversion');
+        if (saved) {
+          const data = JSON.parse(saved);
+          activeCategory = data.category;
+          fromUnit = data.fromUnit;
+          toUnit = data.toUnit;
+          inputValue = data.fromValue;
+          result = data.result;
+          
+          inputField.value = inputValue;
+          resultField.value = result;
+          
+          updateTabButtons();
+          
+          const currentUnits = unitCategories[activeCategory].units;
+          const fromUnitObj = currentUnits.find(u => u.id === fromUnit);
+          const toUnitObj = currentUnits.find(u => u.id === toUnit);
+          
+          if (fromUnitObj && toUnitObj) {
+            fromSelectValue.textContent = `${fromUnitObj.label} (${fromUnitObj.symbol})`;
+            toSelectValue.textContent = `${toUnitObj.label} (${toUnitObj.symbol})`;
+            updateResultUnit();
+            
+            if (result) {
+              resultText.textContent = `${inputValue} ${fromUnitObj.symbol} = ${result} ${toUnitObj.symbol}`;
+              resultDisplay.classList.remove('hidden');
+            }
+          }
+        }
+      };
+
+      // Event listeners
+      tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          activeCategory = button.dataset.category;
+          updateTabButtons();
+          resetUnits();
+        });
+      });
+
+      fromSelect.addEventListener('click', (e) => {
+        e.stopPropagation();
+        populateDropdown(fromDropdown, fromSelectValue, fromUnit, true);
+        fromDropdown.classList.toggle('show');
+        toDropdown.classList.remove('show');
+      });
+
+      toSelect.addEventListener('click', (e) => {
+        e.stopPropagation();
+        populateDropdown(toDropdown, toSelectValue, toUnit, false);
+        toDropdown.classList.toggle('show');
+        fromDropdown.classList.remove('show');
+      });
+
+      document.addEventListener('click', () => {
+        fromDropdown.classList.remove('show');
+        toDropdown.classList.remove('show');
+      });
+
+      inputField.addEventListener('input', (e) => {
+        inputValue = e.target.value;
+        updateResult();
+      });
+
+      swapButton.addEventListener('click', swapUnits);
+
+      // Initialize app
+      updateTabButtons();
+      resetUnits();
+      loadFromLocalStorage();
+    </script>
+  </body>
+</html>

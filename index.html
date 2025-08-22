@@ -12,14 +12,17 @@
 </head>
 <body>
 
-<header class="px-4 sm:px-6 py-4 sm:py-5 flex sticky z-50 top-0 justify-between items-center shadow bg-white lg:justify-between">
+<header class="px-4 sm:px-6 py-3 sm:py-5 flex sticky 
+   z-50 top-0 justify-between items-center border-b border-zinc-100 
+    bg-white/80 backdrop-blur-md
+       lg:justify-between">
 	<div class="logo flex items-center gap-3 px-4">
 		<h2 class="text-blue-900 font-extrabold capitalize text-2xl sm:text-3xl lg:text-4xl ">portifolio.</h2>
 		</div>
 
 	<div id="mobileMenu" class=" hidden flex-col gap-4 lg:flex 
-	   md:w-content md:bg-transparent md:shadow-none 
-	   top-full left-50 md:relative w-full bg-white px-6 py-4 shadow-md float-right absolute right-0">
+	   md:w-content md:bg-transparent md:shadow-none   bg-white
+	   top-full left-50 md:relative w-full  px-6 py-4 shadow-md float-right absolute right-0">
 	<ul class="flex flex-col gap-4 text-base text-blue-900 lg:flex-row">
 		<li><a href="#home" onclick="toggleMenu()">Home</a></li>
 		<li><a href="#about" onclick="toggleMenu()">About</a></li>
@@ -43,12 +46,12 @@
 
 <main class="flex flex-col gap-6 px-4 py-6 items-center justify-center" id="about shadow-lg rounded-lg">
 	<div class="w-full sm:w-[50%] max-w-md flex items-center justify-center">
-		<img src="image/IMG-20250819-WA0003.jpg" c
-		  class="w-72 h-72 rounded-full shadow-lg object-cover">
+		<img src="image/me.jpg" c
+		  class="w-72 h-72 rounded-full shadow-lg object-cover shadow-2xl  brightness-125 ">
 	</div>
 	<div class="w-full sm:w-[50%] flex flex-col gap-3 p-6 items-center justify-center text-center bg-white ">
 		<p class="text-2xl text-gray-800">Hi I'm</p>
-		<h1 class="font-extrabold text-4xl text-blue-900 ">Samuel</h1>
+		<h1 class="font-extrabold text-4xl text-blue-900 ">Samuel UMUHOZA</h1>
 		<h1 class="text-3xl font-bold ">From Concept to Code – I Bring Ideas to Life.</h1>
 		<p class="text-zinc-700">
 			Helping businesses and individuals achieve more with technology.
@@ -299,20 +302,29 @@ justify-center mx-auto text-center rounded-lg mt-5"  id="projects">
 </section>
  <section id="contact" class="max-w-4xl mx-auto rounded-lg py-5 mt-5  border gap-4 flex-col md:flex-row 
     border-zinc-100 drop-shadow-lg flex justify-center  items-center">
-	<div class="flex w-full max-w-sm h-full border border-zinc-100  rounded-lg border border-zinc-200">
-        <h2 class="font-extrabold text-xl lg:text-2xl px-4 py-3 text-orange-600 capitalize text-center">contact</h2>
+	<div class="flex w-full max-w-sm h-full border border-zinc-100
+	  rounded-lg border border-zinc-20 items-center  justify-center">
+        <h2 class="font-extrabold text-xl lg:text-2xl px-4 py-3 text-zinc-600 capitalize text-center">contact</h2>
 
 	</div>
  	
- 	<form class="flex flex-col gap-2 max-w-md w-full p-6 rounded-lg bg-zinc-100 border border-zinc-100 drop-shadow-sm" action="https://formspree.io/f/xblgvrny" method="POST">
+ 	<form class="flex flex-col gap-2 max-w-md w-full p-6 
+	  rounded-lg border border-zinc-100 drop-shadow-sm" 
+	   action="https://formspree.io/f/xblgvrny" method="POST">
  		<label class="text-slate-700">Fullnames</label>
- 		<input type="text" name="name" required class="p-2 rounded-lg border border-slate-300 outline-none focus:border-2 focus:border-orange-700">
+ 		<input type="text" name="name" required
+		    class="p-2 rounded-lg border border-slate-300 outline-none
+			   focus:border-2 focus:border-zinc-200">
 
  		<label class="text-slate-700">Email</label>
- 		<input type="email" name="email" required class="p-2 rounded-lg border border-slate-300 outline-none focus:border-2 focus:border-orange-700">
+ 		<input type="email" name="email" required
+		   class="p-2 rounded-lg border border-slate-300 outline-none
+			   focus:border-2 focus:border-zinc-200">
 
  		<label class="text-slate-700">Message</label>
- 		<textarea class="p-2 border border-slate-300 rounded-lg outline-none h-48" name="message px-5 hover:border-2 hover:border-orange-700">
+ 		<textarea 
+		   class="p-2 rounded-lg border border-slate-300 outline-none
+			   focus:border-2 focus:border-zinc-200 h-48" name="message px-5 hover:border-2 hover:border-orange-700">
  			
  		</textarea>
  		 <button class="p-3  my-3 text-sm  bg-zinc-800 text-white rounded-lg capitalize

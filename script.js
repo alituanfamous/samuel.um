@@ -7,6 +7,14 @@ const progressBar = document.querySelector(".scroll-progress");
 const interactiveCards = document.querySelectorAll(".interactive-card");
 const submitButton = document.querySelector(".submit-button");
 const countTargets = document.querySelectorAll("[data-count]");
+const projectImageButtons = document.querySelectorAll(".project-image");
+const imageModal = document.querySelector("#imageModal");
+const imageModalPreview = document.querySelector("#imageModalPreview");
+const imageModalCaption = document.querySelector("#imageModalCaption");
+const imageModalClose = imageModal?.querySelector(".image-modal-close");
+const hoverPreviewEnabled = window.matchMedia("(hover: hover) and (pointer: fine)");
+let activeImageTrigger = null;
+let hoverPreviewTimer = null;
 
 const closeMenu = () => {
   menuToggle.classList.remove("is-open");
@@ -92,6 +100,64 @@ interactiveCards.forEach((card) => {
     card.style.setProperty("--pointer-x", `${x}%`);
     card.style.setProperty("--pointer-y", `${y}%`);
   });
+});
+
+const openImageModal = (trigger) => {
+  if (!imageModal || !imageModalPreview || !imageModalCaption) return;
+
+  const image = trigger.querySelector("img");
+  if (!image) return;
+
+  activeImageTrigger = trigger;
+  imageModalPreview.src = image.currentSrc || image.src;
+  imageModalPreview.alt = image.alt;
+  imageModalCaption.textContent = image.alt;
+  imageModal.classList.add("is-open");
+  imageModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+  imageModalClose?.focus();
+};
+
+const closeImageModal = () => {
+  if (!imageModal || !imageModalPreview || !imageModalCaption) return;
+
+  imageModal.classList.remove("is-open");
+  imageModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+  imageModalPreview.src = "";
+  imageModalPreview.alt = "";
+  imageModalCaption.textContent = "";
+  activeImageTrigger?.focus();
+  activeImageTrigger = null;
+};
+
+projectImageButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    openImageModal(button);
+  });
+
+  button.addEventListener("pointerenter", () => {
+    if (!hoverPreviewEnabled.matches || imageModal?.classList.contains("is-open")) return;
+
+    window.clearTimeout(hoverPreviewTimer);
+    hoverPreviewTimer = window.setTimeout(() => {
+      openImageModal(button);
+    }, 180);
+  });
+
+  button.addEventListener("pointerleave", () => {
+    window.clearTimeout(hoverPreviewTimer);
+  });
+});
+
+imageModal?.querySelectorAll("[data-close-modal]").forEach((control) => {
+  control.addEventListener("click", closeImageModal);
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && imageModal?.classList.contains("is-open")) {
+    closeImageModal();
+  }
 });
 
 const animateCount = (target) => {

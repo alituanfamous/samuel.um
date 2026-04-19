@@ -1,360 +1,577 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>U.Samuel</title>
-	 <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/all.css">
-    <link rel="stylesheet" href="css/all.min.css">
-	<script src="https://cdn.tailwindcss.com"></script>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<meta name="google-adsense-account" content="ca-pub-2588871591133625">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samuel Umuhoza | Software Developer</title>
+  <meta
+    name="description"
+    content="Portfolio of Samuel Umuhoza, a software developer building responsive products, dashboards, and web experiences."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="style.css">
+  <meta name="google-adsense-account" content="ca-pub-2588871591133625">
 </head>
 <body>
+  <div class="page-noise" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
 
-<header class="px-4 sm:px-6 py-3 sm:py-5 flex sticky 
-   z-50 top-0 justify-between items-center border-b border-zinc-100 
-    bg-white/80 backdrop-blur-md
-       lg:justify-between">
-	<div class="logo flex items-center gap-3 px-4">
-		<h2 class="text-blue-900 font-extrabold capitalize text-2xl sm:text-3xl lg:text-4xl ">portifolio.</h2>
-		</div>
+  <header class="site-header" id="top">
+    <div class="container nav-shell">
+      <a class="brand" href="#home" aria-label="Samuel Umuhoza home">
+        <span class="brand-mark">SU</span>
+        <span class="brand-copy">
+          <strong>Samuel Umuhoza</strong>
+          <span>Software Developer</span>
+        </span>
+      </a>
 
-	<div id="mobileMenu" class=" hidden flex-col gap-4 lg:flex 
-	   md:w-content md:bg-transparent md:shadow-none   bg-white
-	   top-full left-50 md:relative w-full  px-6 py-4 shadow-md float-right absolute right-0">
-	<ul class="flex flex-col gap-4 text-base text-blue-900 lg:flex-row">
-		<li><a href="#home" onclick="toggleMenu()">Home</a></li>
-		<li><a href="#about" onclick="toggleMenu()">About</a></li>
-		<li><a href="#education" onclick="toggleMenu()">Education</a></li>
-		<li><a href="#skills" onclick="toggleMenu()">Skills</a></li>
-		<li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-		<li><a href="#contact" onclick="toggleMenu()" >Contact</a></li>
-	</ul>
-</div>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="siteNav"
+        aria-label="Toggle navigation"
+      >
+        <span></span>
+        <span></span>
+      </button>
 
-  <div class="flex items-right justify-end">
-     <button id="menuToggle" class="sm:hidden p-2 rounded-full bg-slate-200 text-blue-900 justify-self-end float-right">
+      <nav class="site-nav" id="siteNav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-cta mobile-only" href="UMUHOZA%20Samuel.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v11.25m0 0 4.5-4.5m-4.5 4.5-4.5-4.5M4.5 15.75v1.125A2.625 2.625 0 0 0 7.125 19.5h9.75a2.625 2.625 0 0 0 2.625-2.625V15.75" />
+          </svg>
+          <span>Download CV</span>
+        </a>
+      </nav>
 
-		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-			<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-		</svg>
-	</button>
-  </div>
-	
-</header>
+      <a class="nav-cta desktop-only" href="UMUHOZA%20Samuel.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v11.25m0 0 4.5-4.5m-4.5 4.5-4.5-4.5M4.5 15.75v1.125A2.625 2.625 0 0 0 7.125 19.5h9.75a2.625 2.625 0 0 0 2.625-2.625V15.75" />
+        </svg>
+        <span>Download CV</span>
+      </a>
+    </div>
+  </header>
 
-<main class="flex flex-col gap-6 px-4 py-6 items-center justify-center" id="about shadow-lg rounded-lg">
-	<div class="w-full sm:w-[50%] max-w-md flex items-center justify-center">
-		<img src="image/me.jpg" c
-		  class="w-72 h-72 rounded-full shadow-lg object-cover shadow-2xl  brightness-125 ">
-	</div>
-	<div class="w-full sm:w-[50%] flex flex-col gap-3 p-6 items-center justify-center text-center bg-white ">
-		<p class="text-2xl text-gray-800">Hi I'm</p>
-		<h1 class="font-extrabold text-4xl text-blue-900 ">Samuel UMUHOZA</h1>
-		<h1 class="text-3xl font-bold ">From Concept to Code – I Bring Ideas to Life.</h1>
-		<p class="text-zinc-700">
-			Helping businesses and individuals achieve more with technology.
-		</p>
-		<div class="flex flex-col sm:flex-row gap-4 mt-4">
-			<button class="px-6 py-3 text-white rounded-lg drop-shadow-lg border border-zinc-200 text-zinc-700 flex gap-2 hover:shadow-lg justify-center">
-			 <a href="#contact">Get in touch</a>
-	<span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-</svg>
-</span>
-		</button>
-			<a href="/UMUHOZA Samuel.pdf" class="px-6 py-3 bg-pink-200 text-white rounded-lg drop-shadow-lg bg-zinc-800 text-center flex gap-2 justify-center" download>
+  <main>
+    <section class="hero section" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Developer portfolio</p>
+          <h1>Building reliable digital products with sharp UI and strong execution.</h1>
+          <p class="hero-text">
+            I design and ship modern interfaces, business dashboards, and web platforms that
+            feel polished, fast, and production-ready.
+          </p>
 
-            <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-</svg>
-</span>
-			Download CV's</a>
-		</div>
-	</div>
-</main>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+              <span>View Projects</span>
+            </a>
+            <a class="button button-secondary" href="#contact">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75Zm0 0h.008v.008h-.008V9.75Zm3.75 0a.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75Zm0 0h.008v.008h-.008V9.75Zm3.75 0a.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75Zm0 0h.008v.008h-.008V9.75ZM6.75 18 3.75 21V6A2.25 2.25 0 0 1 6 3.75h12A2.25 2.25 0 0 1 20.25 6v9A2.25 2.25 0 0 1 18 17.25H6.75V18Z" />
+              </svg>
+              <span>Let&apos;s Work Together</span>
+            </a>
+          </div>
 
-<section id="education" class="p-8 flex flex-col md:flex-row border border-zinc-100 drop-shadow-sm rounded-lg
-   gap-3 justify-center items-center max-w-4xl  mx-auto">
-   	
-	<div class="text-center p-4 ">
-		<h1 class="text-2xl font-extrabold text-slate-800">Lycee saint alexandre sauli de muhura</h1>
-		<h3 class="p-3 font-extrabold text-2xl text-blue-600">A2</h3>
-		<div class="border border-zinc-200 text-zinc-700 py-4 rounded-lg my-4 ">Software Development</div>
-	</div>
+          <div class="hero-stats">
+            <article class="stat-card interactive-card">
+              <strong data-count="3">3+</strong>
+              <span class="stat-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-1.313.438a.75.75 0 0 1-.95-.95L7.186 17l-.904-2.714a.75.75 0 0 1 .474-.95L9.5 12.75l.587-2.744a.75.75 0 0 1 1.326-.252l1.537 2.049 2.745.587a.75.75 0 0 1 .252 1.326l-2.049 1.537-.085.651Zm5.348-8.436 1.318-4.614a.75.75 0 0 1 1.422 0l1.318 4.614 4.614 1.318a.75.75 0 0 1 0 1.422l-4.614 1.318-1.318 4.614a.75.75 0 0 1-1.422 0l-1.318-4.614-4.614-1.318a.75.75 0 0 1 0-1.422l4.614-1.318Z" />
+                </svg>
+                <span>Featured shipped projects</span>
+              </span>
+            </article>
+            <article class="stat-card interactive-card">
+              <strong data-count="5">5+</strong>
+              <span class="stat-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h4.5v4.5h-4.5v-4.5Zm6.75 0H15v4.5h-4.5v-4.5Zm6.75 0h3v4.5h-3v-4.5ZM3.75 12h4.5v6.75h-4.5V12Zm6.75 0H15v6.75h-4.5V12Zm6.75 0h3v6.75h-3V12Z" />
+                </svg>
+                <span>Core engineering areas</span>
+              </span>
+            </article>
+            <article class="stat-card interactive-card">
+              <strong>100%</strong>
+              <span class="stat-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h3m-7.5 0h9A2.25 2.25 0 0 1 17.25 8.25v7.5A2.25 2.25 0 0 1 15 18H9a2.25 2.25 0 0 1-2.25-2.25v-7.5A2.25 2.25 0 0 1 9 6Zm12 2.25v7.5A2.25 2.25 0 0 1 18.75 18h-.75V6h.75A2.25 2.25 0 0 1 21 8.25Zm-18 0v7.5A2.25 2.25 0 0 0 5.25 18H6V6h-.75A2.25 2.25 0 0 0 3 8.25Z" />
+                </svg>
+                <span>Responsive, mobile-ready delivery</span>
+              </span>
+            </article>
+          </div>
+        </div>
 
-	<div class=" p-6 rounded max-w-full w-full  text-sm">
-		<div class="flex flex-col sm:flex-row justify-between gap-3 text-blue-500 mb-4">
-			<p>Sept 2021 - Aug 2024</p>
-			<p class="flex items-center gap-1"><svg class="w-4 h-4" ...></svg> Gatsibo, East Rwanda</p>
-		</div>
-		<p>Lycée de Muhura, a government-supported TVET school in Gatsibo, 
-			specializes in Computer System Technology and Computer Application 
-			certificate programs (Levels 3–5). Renowned among Rwanda’s top ICT 
-			and Multimedia training centers, it plays a critical role in shaping
-			 future software developers with practical, industry-ready skills.</p>
-		
-		</div>
-	</div>
-</section>
+        <aside class="hero-panel reveal interactive-card">
+          <div class="hero-panel-top">
+            <p>Developer Snapshot</p>
+            <span class="status-pill">Available for freelance</span>
+          </div>
 
-<section id="skills" class="px-4 py-6 max-w-4xl items-center border border-zinc-100 drop-shadow-lg
-justify-center mx-auto text-center rounded-lg mt-5">
-	<h3 class="text-2xl font-semibold capitalize mb-4">Skills</h3>
+          <div class="profile-row">
+            <img src="image/me.jpg" alt="Portrait of Samuel Umuhoza">
+            <div>
+              <h2>Samuel Umuhoza</h2>
+              <p>Frontend-focused developer with full-stack capability</p>
+            </div>
+          </div>
 
-	<div class="grid grid-cols-1  md:grid-cols-2 gap-4 p-4 md:p-6">
-		<!-- Each skill card -->
-		<div class="border border-zinc-100 rounded-lg p-5 md:p-15">
-			<p class="font-semibold capitalize mb-2 text-lg md:text-2xl text-zinc-700">Front-end web development</p>
-			<div class="flex flex-wrap gap-3 text-sm">
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">HTML5</p>
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">CSS3</p>
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">Javascript</p>
-				
-			</div>
-		</div>
+          <div class="signal-grid">
+            <div class="signal-item">
+              <span class="signal-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m0 13.5V21m9-9h-2.25M5.25 12H3m15.364 6.364-1.591-1.591M7.227 7.227 5.636 5.636m12.728 0-1.591 1.591M7.227 16.773l-1.591 1.591M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                </svg>
+                <span>Current focus</span>
+              </span>
+              <strong>Interactive UI systems</strong>
+            </div>
+            <div class="signal-item">
+              <span class="signal-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5 12 4.5l5.25 3-5.25 3-5.25-3Zm0 4.5L12 15l5.25-3M6.75 12v4.5L12 19.5l5.25-3V12" />
+                </svg>
+                <span>Stack</span>
+              </span>
+              <strong>React, Next.js, Node.js</strong>
+            </div>
+            <div class="signal-item">
+              <span class="signal-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3.289A.75.75 0 0 1 10.5 4.01V8.25h3A2.25 2.25 0 0 1 15.75 10.5v3.75h4.239a.75.75 0 0 1 .72.932 9 9 0 1 1-11.14-11.893Z" />
+                </svg>
+                <span>Strength</span>
+              </span>
+              <strong>Design-minded engineering</strong>
+            </div>
+            <div class="signal-item">
+              <span class="signal-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s6-4.35 6-10.2a6 6 0 1 0-12 0C6 16.65 12 21 12 21Zm0-8.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z" />
+                </svg>
+                <span>Location</span>
+              </span>
+              <strong>Rwanda</strong>
+            </div>
+          </div>
 
-		<div class="border border-zinc-100 rounded-lg p-5 md:p-15">
-			<p class="font-semibold capitalize mb-2 text-lg md:text-2xl text-zinc-700">Framework & Libraries</p>
-			<div class="flex flex-wrap gap-3 text-sm">
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">React</p>
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">Bootstrap</p>
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">Next.js</p>
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">Tailwindcss</p>
-				
-			</div>
-		</div>
+          <div class="hero-tags">
+            <span>UI Engineering</span>
+            <span>Dashboards</span>
+            <span>APIs</span>
+            <span>Performance</span>
+            <span>Responsive Design</span>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-		<div class="border border-zinc-100 rounded-lg p-5 md:p-15">
-			<p class="font-semibold capitalize mb-2 text-lg md:text-2xl text-zinc-700">Backend web development</p>
-			<div class="flex flex-wrap gap-3 text-sm">
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">PHP</p>
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">Firebase Auth</p>
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">Restful API</p>
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">Node.js</p>
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">Express.js</p>
-			</div>
-		</div>
+    <section class="section section-tight">
+      <div class="container">
+        <div class="highlight-band reveal">
+          <p>
+            I turn product ideas into clean interfaces and usable systems, with attention to
+            responsiveness, clarity, and maintainable implementation.
+          </p>
+          <div class="highlight-meta">
+            <span>Production mindset</span>
+            <span>Visual polish</span>
+            <span>Fast iteration</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-		<div class="border border-zinc-100 rounded-lg  p-5 md:p-15">
-			<p class="font-semibold capitalize mb-2 text-lg md:text-2xl text-zinc-700">Database Design</p>
-			<div class="flex flex-wrap gap-3 text-sm">
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">MySQL</p>
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">MS SQL</p>
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">PocketBase</p>
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">Firebase Firestore</p>
-			</div>
-		</div>
+    <section class="section" id="about">
+      <div class="container section-grid about-grid">
+        <div class="section-copy reveal">
+          <p class="eyebrow">About me</p>
+          <h2>I build software that looks premium and behaves with intent.</h2>
+          <p>
+            My work sits at the intersection of product thinking and engineering. I care about
+            clean structure, stronger interaction design, and building experiences that feel
+            trustworthy from the first scroll.
+          </p>
+          <p>
+            From concept to deployment, I focus on products that help businesses present value
+            clearly and operate more efficiently.
+          </p>
+        </div>
 
-		<div class="border border-zinc-100 rounded-lg  p-5 md:p-15">
-			<p class="font-semibold capitalize mb-2 text-lg md:text-2xl text-zinc-700">Tools & DevOps</p>
-			<div class="flex flex-wrap gap-3 text-sm">
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">Github</p>
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">Vercel</p>
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">Git</p>
-				<p class="border border-zinc-200 px-3 py-1 rounded-full">Netlify</p>
-			</div>
-		</div>
+        <div class="value-stack">
+          <article class="value-card reveal interactive-card">
+            <span>01</span>
+            <h3>Frontend craft</h3>
+            <p>Modern layouts, strong hierarchy, clear spacing, and interaction details that improve usability.</p>
+          </article>
+          <article class="value-card reveal interactive-card">
+            <span>02</span>
+            <h3>Full-stack thinking</h3>
+            <p>Interfaces are designed with data flow, APIs, authentication, and maintainability in mind.</p>
+          </article>
+          <article class="value-card reveal interactive-card">
+            <span>03</span>
+            <h3>Delivery focus</h3>
+            <p>I prioritize working solutions, fast refinement, and a result that feels ready to show publicly.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-		<!-- Repeat for other categories: backend, design, etc -->
-	</div>
+    <section class="section" id="education">
+      <div class="container timeline-shell">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Education</p>
+          <h2>Technical foundation backed by practical training.</h2>
+        </div>
 
-	<p class="mt-6 text-sm text-slate-700">I am a quick learner and a team player...</p>
-</section>
+        <article class="timeline-card reveal interactive-card">
+          <div class="timeline-meta">
+            <span>Sept 2021 - Aug 2024</span>
+            <span>Gatsibo, East Rwanda</span>
+          </div>
+          <div class="timeline-body">
+            <div>
+              <p class="timeline-label">Institution</p>
+              <h3>Lycee Saint Alexandre Sauli de Muhura</h3>
+            </div>
+            <div>
+              <p class="timeline-label">Track</p>
+              <h3>Software Development, A2</h3>
+            </div>
+          </div>
+          <p class="timeline-text">
+            TVET-focused training in software development, computer systems, and applied ICT
+            practice, with an emphasis on building practical, industry-ready skills.
+          </p>
+        </article>
+      </div>
+    </section>
 
-<section class="px-4 py-6 max-w-4xl items-center border border-zinc-100 drop-shadow-lg
-justify-center mx-auto text-center rounded-lg mt-5"  id="projects">
-	<h1 class="text-2xl font-semibold capitalize mb-2">Projects</h1>
-	<p class="mb-4">I have worked on several projects...</p>
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Capabilities</p>
+          <h2>Tools and technologies I use to build modern products.</h2>
+        </div>
 
-	<div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4 p-6 bg-zinc-50
-	 rounded-lg">
-		<div class=" cursor-pointer">
-			<img src="image/352_1x_shots_so.png" class="w-full object-cover rounded-lg hover:scale-105 transition-transform duration-300">
-			<div class="px-1 py-2 font-semibold lg:text-xl">
-				Go-ship
-				
-                 </div>
-                 <div class=" mx-1 py-1 text-sm lg:text-md">
-                 	Item Tracker – Shipment Management Dashboard
-                 	<div  class="flex flex-wrap gap-2 my-2 px-2">
-                 		<p class="px-4 py-1 rounded-full border border-zinc-200 text-zinc-700 bg-white">HTML</p>
-                 		<p class="px-4 py-1 rounded-full border border-zinc-200 text-zinc-700 bg-white">Next.js</p>
-						<p class="px-4 py-1 rounded-full border border-zinc-200 text-zinc-700 bg-white">Firebase Auth</p>
-                 		<p  class="px-4 py-1 rounded-full border border-zinc-200 text-zinc-700 bg-white">Tailwindcss</p>
-                 	</div>
-					<div class="flex gap-3 items-center justify-center">
+        <div class="skills-grid">
+          <article class="skill-card reveal interactive-card">
+            <h3>Frontend</h3>
+            <div class="chip-group">
+              <span>HTML5</span>
+              <span>CSS3</span>
+              <span>JavaScript</span>
+              <span>Responsive Design</span>
+              <span>UI Animation</span>
+            </div>
+          </article>
 
-					
-                 		<div class="my-5 px-5 flex w-25 py-2  rounded-md text-center justify-center  text-white 
-						 bg-zinc-800 rounded-lg w-fit ">
-                 		<a href="https://go-ship.vercel.app/" class="decoration-none">Live</a>
-                 		<span>
-                 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
-						<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
-						</svg>
+          <article class="skill-card reveal interactive-card">
+            <h3>Frameworks</h3>
+            <div class="chip-group">
+              <span>React</span>
+              <span>Next.js</span>
+              <span>Tailwind CSS</span>
+              <span>Bootstrap</span>
+            </div>
+          </article>
 
-                 		</span>
-                 	</div>
+          <article class="skill-card reveal interactive-card">
+            <h3>Backend</h3>
+            <div class="chip-group">
+              <span>Node.js</span>
+              <span>Express.js</span>
+              <span>PHP</span>
+              <span>REST API</span>
+              <span>Firebase Auth</span>
+            </div>
+          </article>
 
-					<div class="my-5 px-5 flex w-25 py-2  rounded-lg text-center justify-center  text-zinc-700 bg-white
-						 border border-zinc-200 rounded-lg w-fit ">
-                 		<a href="https://github.com/alituanfamous/GoShip" class="decoration-none">Github</a>
-                 		<span>
-                 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
-						<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
-						</svg>
+          <article class="skill-card reveal interactive-card">
+            <h3>Database</h3>
+            <div class="chip-group">
+              <span>MySQL</span>
+              <span>MS SQL</span>
+              <span>PocketBase</span>
+              <span>Firebase Firestore</span>
+            </div>
+          </article>
 
-                 		</span>
-                 	</div>
-					</div>
-                 </div>
-		</div>
+          <article class="skill-card reveal interactive-card">
+            <h3>Workflow</h3>
+            <div class="chip-group">
+              <span>Git</span>
+              <span>GitHub</span>
+              <span>Vercel</span>
+              <span>Netlify</span>
+              <span>Deployment</span>
+            </div>
+          </article>
 
-		<div class=" cursor-pointer ">
-			<img src="image/272_1x_shots_so.png" class="w-full object-cover
-			  rounded-lg hover:scale-105 transition-transform duration-300">
-			<div class="px-1 py-2 font-semibold lg:text-xl">ElevateAI
-				
-                 </div>
-                 <div class="mx-1 py-1 text-sm lg:text-md">
-                 	A modern static website built to showcase AI-driven solutions
-                 	<div  class="flex flex-wrap gap-2 my-2 px-2">
-                 		<p class="px-4 py-1 rounded-full border border-zinc-200 text-zinc-700 bg-white">HTML</p>
-                 		<p class="px-4 py-1 rounded-full border border-zinc-200 text-zinc-700 bg-white">Tailwindcss</p>
-                 		<p  class="px-4 py-1 rounded-full border border-zinc-200 text-zinc-700 bg-white">Javascript</p>
-                 	</div>
-                 	<div class="flex gap-3 items-center justify-center">
+          <article class="skill-card reveal interactive-card">
+            <h3>Working style</h3>
+            <p class="skill-note">
+              Fast learner, collaborative builder, and detail-focused when turning a rough idea
+              into a polished interface.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-					
-                 		<div class="my-5 px-5 flex w-25 py-2  rounded-md text-center justify-center  text-white 
-						 bg-zinc-800 rounded-lg w-fit ">
-                 		<a href="https://elevateai.vercel.app/" class="decoration-none">Live</a>
-                 		<span>
-                 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
-						<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
-						</svg>
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Selected work</p>
+          <h2>Projects that reflect product thinking and execution quality.</h2>
+        </div>
 
-                 		</span>
-                 	</div>
+        <div class="projects-grid">
+          <article class="project-card reveal interactive-card">
+            <div class="project-image">
+              <img src="image/352_1x_shots_so.png" alt="Go-ship dashboard preview">
+            </div>
+            <div class="project-content">
+              <div class="project-heading">
+                <h3>Go-ship</h3>
+                <p>Shipment management dashboard built for tracking items and logistics workflows.</p>
+              </div>
+              <div class="chip-group">
+                <span>Next.js</span>
+                <span>Firebase Auth</span>
+                <span>Tailwind CSS</span>
+                <span>Dashboard UI</span>
+              </div>
+              <div class="project-links">
+                <a class="button button-primary" href="https://go-ship.vercel.app/" target="_blank" rel="noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H19.5m0 0v6m0-6-9 9M7.5 9H6A2.25 2.25 0 0 0 3.75 11.25v6A2.25 2.25 0 0 0 6 19.5h6a2.25 2.25 0 0 0 2.25-2.25V15.75" />
+                  </svg>
+                  <span>Live Site</span>
+                </a>
+                <a class="button button-secondary" href="https://github.com/alituanfamous/GoShip" target="_blank" rel="noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m14.25 9-3.75 3.75L14.25 16.5m-4.5-7.5L6 12.75l3.75 3.75M8.25 21l7.5-18" />
+                  </svg>
+                  <span>Source</span>
+                </a>
+              </div>
+            </div>
+          </article>
 
-					<div class="my-5 px-5 flex w-25 py-2  rounded-lg text-center justify-center  text-zinc-700 bg-white
-						 border border-zinc-200 rounded-lg w-fit ">
-                 		<a href="https://github.com/alituanfamous/elevate-ai" class="decoration-none">Github</a>
-                 		<span>
-                 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
-						<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
-						</svg>
+          <article class="project-card reveal interactive-card">
+            <div class="project-image">
+              <img src="image/272_1x_shots_so.png" alt="ElevateAI website preview">
+            </div>
+            <div class="project-content">
+              <div class="project-heading">
+                <h3>ElevateAI</h3>
+                <p>Marketing site for AI-focused solutions with modern sections, stronger messaging, and clean layout flow.</p>
+              </div>
+              <div class="chip-group">
+                <span>HTML</span>
+                <span>JavaScript</span>
+                <span>Tailwind CSS</span>
+                <span>Landing Page</span>
+              </div>
+              <div class="project-links">
+                <a class="button button-primary" href="https://elevateai.vercel.app/" target="_blank" rel="noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H19.5m0 0v6m0-6-9 9M7.5 9H6A2.25 2.25 0 0 0 3.75 11.25v6A2.25 2.25 0 0 0 6 19.5h6a2.25 2.25 0 0 0 2.25-2.25V15.75" />
+                  </svg>
+                  <span>Live Site</span>
+                </a>
+                <a class="button button-secondary" href="https://github.com/alituanfamous/elevate-ai" target="_blank" rel="noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m14.25 9-3.75 3.75L14.25 16.5m-4.5-7.5L6 12.75l3.75 3.75M8.25 21l7.5-18" />
+                  </svg>
+                  <span>Source</span>
+                </a>
+              </div>
+            </div>
+          </article>
 
-                 		</span>
-                 	</div>
-					</div>
-                 </div>
-		</div>
+          <article class="project-card reveal interactive-card">
+            <div class="project-image">
+              <img src="image/736_1x_shots_so.png" alt="Silverwood Furniture website preview">
+            </div>
+            <div class="project-content">
+              <div class="project-heading">
+                <h3>Silverwood Furniture</h3>
+                <p>Brand-forward product website designed to present craftsmanship with a clean visual structure.</p>
+              </div>
+              <div class="chip-group">
+                <span>React.js</span>
+                <span>Tailwind CSS</span>
+                <span>Brand Website</span>
+              </div>
+              <div class="project-links">
+                <a class="button button-primary" href="https://silverwoodfurniture.vercel.app/" target="_blank" rel="noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H19.5m0 0v6m0-6-9 9M7.5 9H6A2.25 2.25 0 0 0 3.75 11.25v6A2.25 2.25 0 0 0 6 19.5h6a2.25 2.25 0 0 0 2.25-2.25V15.75" />
+                  </svg>
+                  <span>Live Site</span>
+                </a>
+                <a class="button button-secondary" href="https://github.com/alituanfamous/silverwoodfurniture" target="_blank" rel="noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m14.25 9-3.75 3.75L14.25 16.5m-4.5-7.5L6 12.75l3.75 3.75M8.25 21l7.5-18" />
+                  </svg>
+                  <span>Source</span>
+                </a>
+              </div>
+            </div>
+          </article>
 
+          <article class="project-card reveal interactive-card">
+            <div class="project-image">
+              <img src="image/747_1x_shots_so.png" alt="Kizere Fruit e-commerce website preview">
+            </div>
+            <div class="project-content">
+              <div class="project-heading">
+                <h3>Kizere Fruit</h3>
+                <p>
+                  A fresh, conversion-focused fruit marketplace landing experience designed to
+                  showcase organic produce, highlight promotional offers, and guide customers
+                  smoothly into shopping.
+                </p>
+              </div>
+              <div class="chip-group">
+                <span>E-commerce UI</span>
+                <span>Product Showcase</span>
+                <span>Promotional Landing Page</span>
+              </div>
+              <div class="project-links">
+                <a class="button button-primary" href="https://kizere-fruit.vercel.app/" target="_blank" rel="noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H19.5m0 0v6m0-6-9 9M7.5 9H6A2.25 2.25 0 0 0 3.75 11.25v6A2.25 2.25 0 0 0 6 19.5h6a2.25 2.25 0 0 0 2.25-2.25V15.75" />
+                  </svg>
+                  <span>Live Site</span>
+                </a>
+              </div>
+            </div>
+          </article>
 
-		<div class=" cursor-pointer ">
-			<img src="image/736_1x_shots_so.png" class="w-full object-cover
-			  rounded-lg hover:scale-105 transition-transform duration-300">
-			<div class="px-1 py-2 font-semibold lg:text-xl">WoodFurniture
-				
-                 </div>
-                 <div class="mx-1 py-1 text-sm lg:text-md">
-                 	Custom walnut coffee table — handcrafted using mortise and tenon joinery, 
-					finished with natural oil.
-					 Designed to maximize storage while keeping a minimal aesthetic.
-                 	<div  class="flex flex-wrap gap-2 my-2 px-2">
-                 		<p class="px-4 py-1 rounded-full border border-zinc-200 text-zinc-700 bg-white">HTML</p>
-                 		<p class="px-4 py-1 rounded-full border border-zinc-200 text-zinc-700 bg-white">Tailwindcss</p>
-                 		<p  class="px-4 py-1 rounded-full border border-zinc-200 text-zinc-700 bg-white">React.js</p>
-                 	</div>
-                 	<div class="flex gap-3 items-center justify-center">
+          <article class="project-card reveal interactive-card">
+            <div class="project-image">
+              <img src="image/802_1x_shots_so.png" alt="AI Tools HQ platform preview">
+            </div>
+            <div class="project-content">
+              <div class="project-heading">
+                <h3>AI Tools HQ</h3>
+                <p>
+                  A curated AI tools discovery platform built to help users explore featured
+                  products, compare categories, and navigate review-driven listings through a
+                  clean, editorial-style interface.
+                </p>
+              </div>
+              <div class="chip-group">
+                <span>HTML</span>
+                <span>Tailwind CSS</span>
+                <span>Next.js</span>
+                <span>Firebase</span>
+                <span>Firestore</span>
+                <span>Firebase Auth</span>
+                <span>Algolia Search</span>
+              </div>
+              <div class="project-links">
+                <a class="button button-primary" href="https://www.aitoolshq.space/" target="_blank" rel="noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H19.5m0 0v6m0-6-9 9M7.5 9H6A2.25 2.25 0 0 0 3.75 11.25v6A2.25 2.25 0 0 0 6 19.5h6a2.25 2.25 0 0 0 2.25-2.25V15.75" />
+                  </svg>
+                  <span>Live Site</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-					
-                 		<div class="my-5 px-5 flex w-25 py-2  rounded-md text-center justify-center  text-white 
-						 bg-zinc-800 rounded-lg w-fit ">
-                 		<a href="https://silverwoodfurniture.vercel.app/" class="decoration-none">Live</a>
-                 		<span>
-                 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
-						<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
-						</svg>
+    <section class="section" id="contact">
+      <div class="container contact-shell">
+        <div class="contact-copy reveal">
+          <p class="eyebrow">Contact</p>
+          <h2>Need a developer who can improve both the product and the presentation?</h2>
+          <p>
+            If you need a landing page, dashboard, portfolio, or product interface that feels
+            more credible and more refined, send me a message.
+          </p>
+          <div class="contact-points">
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m14.25 9-3.75 3.75L14.25 16.5m-4.5-7.5L6 12.75l3.75 3.75M8.25 21l7.5-18" />
+              </svg>
+              <span>Frontend engineering</span>
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 7.5h15m-15 4.5h15m-15 4.5h9" />
+              </svg>
+              <span>Portfolio redesigns</span>
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 4.5h9A1.5 1.5 0 0 1 18 6v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 18V6a1.5 1.5 0 0 1 1.5-1.5ZM10.5 16.5h3" />
+              </svg>
+              <span>Responsive websites</span>
+            </span>
+          </div>
+        </div>
 
-                 		</span>
-                 	</div>
+        <form
+          class="contact-form reveal interactive-card"
+          action="https://formspree.io/f/xblgvrny"
+          method="POST"
+        >
+          <label for="name">Full name</label>
+          <input id="name" type="text" name="name" required>
 
-					<div class="my-5 px-5 flex w-25 py-2  rounded-lg text-center justify-center  text-zinc-700 bg-white
-						 border border-zinc-200 rounded-lg w-fit ">
-                 		<a href="https://github.com/alituanfamous/silverwoodfurniture" class="decoration-none">Github</a>
-                 		<span>
-                 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
-						<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
-						</svg>
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" required>
 
-                 		</span>
-                 	</div>
-					</div>
-                 </div>
-		</div>
+          <label for="message">Project details</label>
+          <textarea id="message" name="message" rows="6" required></textarea>
 
+          <button class="button button-primary submit-button" type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
 
-		
-</section>
- <section id="contact" class="max-w-4xl mx-auto rounded-lg py-5 mt-5  border gap-4 flex-col md:flex-row 
-    border-zinc-100 drop-shadow-lg flex justify-center  items-center">
-	<div class="flex w-full max-w-sm h-full border border-zinc-100
-	  rounded-lg border border-zinc-20 items-center  justify-center">
-        <h2 class="font-extrabold text-xl lg:text-2xl px-4 py-3 text-zinc-600 capitalize text-center">contact</h2>
+  <footer class="site-footer">
+    <div class="container footer-shell">
+      <p>&copy; 2026 Samuel Umuhoza. Crafted to present work with more clarity and edge.</p>
+      <a href="#top">
+        <span>Back to top</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75 12 8.25l7.5 7.5" />
+        </svg>
+      </a>
+    </div>
+  </footer>
 
-	</div>
- 	
- 	<form class="flex flex-col gap-2 max-w-md w-full p-6 
-	  rounded-lg border border-zinc-100 drop-shadow-sm" 
-	   action="https://formspree.io/f/xblgvrny" method="POST">
- 		<label class="text-slate-700">Fullnames</label>
- 		<input type="text" name="name" required
-		    class="p-2 rounded-lg border border-slate-300 outline-none
-			   focus:border-2 focus:border-zinc-200">
-
- 		<label class="text-slate-700">Email</label>
- 		<input type="email" name="email" required
-		   class="p-2 rounded-lg border border-slate-300 outline-none
-			   focus:border-2 focus:border-zinc-200">
-
- 		<label class="text-slate-700">Message</label>
- 		<textarea 
-		   class="p-2 rounded-lg border border-slate-300 outline-none
-			   focus:border-2 focus:border-zinc-200 h-48" name="message px-5 hover:border-2 hover:border-orange-700">
- 			
- 		</textarea>
- 		 <button class="p-3  my-3 text-sm  bg-zinc-800 text-white rounded-lg capitalize
- 		 " type="submit" id="submit">Reach Us</button>
- 	</form>
- 	
- </section>
- <footer class="w-full h-16 bg-zinc-200 flex justify-center items-center gap-6">
-	<div class="flex">
-		<p>&copy; 2025. Umuhoza Samuel</p>
-	</div>
-
- </footer>
+  <script src="script.js"></script>
 </body>
 </html>
-<script>
-	function toggleMenu() {
-		const menu = document.getElementById('mobileMenu');
-		menu.classList.toggle('hidden');
-	}
-
-	document.getElementById('menuToggle').addEventListener('click', toggleMenu);
-	document.getElementById('menuToggle').classList.add('X');
-	const btn = document.getElementById('submit');
-	btn.addEventListener('click', function() {
-  btn.innerText = "Sending......."
-  setTimout(() => {
-  	 btn.innerText = "Sent"
-  }, 3000)
-	})
-</script>
-

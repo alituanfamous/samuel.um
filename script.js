@@ -1,106 +1,137 @@
-const menubtn = document.querySelector('.menu')
-menu = document.querySelector('header ul')
-up = document.querySelector('.up')
+const header = document.querySelector(".site-header");
+const menuToggle = document.querySelector("#menuToggle");
+const nav = document.querySelector("#siteNav");
+const navLinks = Array.from(document.querySelectorAll(".site-nav a[href^='#']"));
+const reveals = document.querySelectorAll(".reveal");
+const progressBar = document.querySelector(".scroll-progress");
+const interactiveCards = document.querySelectorAll(".interactive-card");
+const submitButton = document.querySelector(".submit-button");
+const countTargets = document.querySelectorAll("[data-count]");
 
-menubtn.onclick = function() {
-  if (!menu.classList.contains('open')) {
-    menu.classList.add('open')
-    menubtn.style.transform = 'rotate(180deg)'
-    menubtn.classList.remove('uil-bars')
-    menubtn.classList.add('uil-times')
-  } else {
-    menu.classList.remove('open')
-    menubtn.style.transform = 'rotate(0deg)'
-    menubtn.classList.add('uil-bars')
-    menubtn.classList.remove('uil-times')
-  }
+const closeMenu = () => {
+  menuToggle.classList.remove("is-open");
+  menuToggle.setAttribute("aria-expanded", "false");
+  nav.classList.remove("is-open");
+};
+
+if (menuToggle && nav) {
+  menuToggle.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("is-open");
+    menuToggle.classList.toggle("is-open", isOpen);
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
 }
 
-window.addEventListener('scroll', () => {
-  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-    up.style.display = "block"
-  } else {
-    up.style.display = "none"
+const syncHeader = () => {
+  if (!header) return;
+  header.classList.toggle("scrolled", window.scrollY > 16);
+};
+
+const syncProgress = () => {
+  if (!progressBar) return;
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+  progressBar.style.width = `${progress}%`;
+};
+
+syncHeader();
+syncProgress();
+
+window.addEventListener("scroll", () => {
+  syncHeader();
+  syncProgress();
+});
+
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    threshold: 0.18,
+    rootMargin: "0px 0px -40px 0px",
   }
-  if (menu.classList.contains('open')) {
-    menu.classList.remove('open')
-    menubtn.style.transform = 'rotate(0deg)'
-    menubtn.classList.add('uil-bars')
-    menubtn.classList.remove('uil-times')
+);
+
+reveals.forEach((item) => revealObserver.observe(item));
+
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const currentId = entry.target.getAttribute("id");
+      navLinks.forEach((link) => {
+        const isActive = link.getAttribute("href") === `#${currentId}`;
+        link.classList.toggle("active", isActive);
+      });
+    });
+  },
+  {
+    threshold: 0.45,
+    rootMargin: "-20% 0px -35% 0px",
   }
-})
+);
 
-up.addEventListener('click', () => {
-  document.body.scrollTop = 0
-  document.documentElement.scrollTop = 0
-})
+document.querySelectorAll("main section[id]").forEach((section) => {
+  sectionObserver.observe(section);
+});
 
-const nav1 = document.getElementById('nav1')
-nav2 = document.getElementById('nav2')
-nav3 = document.getElementById('nav3')
-nav4 = document.getElementById('nav4')
+interactiveCards.forEach((card) => {
+  card.addEventListener("pointermove", (event) => {
+    const rect = card.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty("--pointer-x", `${x}%`);
+    card.style.setProperty("--pointer-y", `${y}%`);
+  });
+});
 
+const animateCount = (target) => {
+  const finalValue = Number(target.dataset.count);
+  if (!Number.isFinite(finalValue)) return;
 
+  const duration = 1200;
+  const start = performance.now();
 
-nav1.onclick = function() {
-  menu.classList.remove('open')
-  menubtn.style.transform = 'rotate(0deg)'
-  menubtn.classList.add('uil-bars')
-  menubtn.classList.remove('uil-times')
+  const step = (now) => {
+    const progress = Math.min((now - start) / duration, 1);
+    const current = Math.floor(progress * finalValue);
+    target.textContent = `${Math.max(current, 1)}+`;
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    } else {
+      target.textContent = `${finalValue}+`;
+    }
+  };
+
+  requestAnimationFrame(step);
+};
+
+const countObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      animateCount(entry.target);
+      countObserver.unobserve(entry.target);
+    });
+  },
+  { threshold: 0.7 }
+);
+
+countTargets.forEach((target) => countObserver.observe(target));
+
+if (submitButton) {
+  const form = submitButton.closest("form");
+  form?.addEventListener("submit", () => {
+    submitButton.textContent = "Sending...";
+    submitButton.disabled = true;
+  });
 }
-nav2.onclick = function() {
-  menu.classList.remove('open')
-  menubtn.style.transform = 'rotate(0deg)'
-  menubtn.classList.add('uil-bars')
-  menubtn.classList.remove('uil-times')
-}
-nav3.onclick = function() {
-  menu.classList.remove('open')
-  menubtn.style.transform = 'rotate(0deg)'
-  menubtn.classList.add('uil-bars')
-  menubtn.classList.remove('uil-times')
-}
-nav4.onclick = function() {
-  menu.classList.remove('open')
-  menubtn.style.transform = 'rotate(0deg)'
-  menubtn.classList.add('uil-bars')
-  menubtn.classList.remove('uil-times')
-}
-
-
-const htmlbar = document.getElementById('bar1')
-cssbar = document.getElementById('bar2')
-jsbar = document.getElementById('bar3')
-
-window.addEventListener('scroll', () => {
-  if (document.body.scrollTop > 1200 || document.documentElement.scrollTop > 1200) {
-    htmlbar.classList.add('activehtml')
-    cssbar.classList.add('activecss')
-    jsbar.classList.add('activejs')
-  }
-})
-
-const sw = document.querySelector('.switch')
-swcircle = document.querySelector('.switchcircle')
-
-sw.addEventListener('click', () => {
-  if (!swcircle.classList.contains('on')) {
-    swcircle.classList.add('on')
-    swcircle.innerHTML = `<ion-icon name="sunny-outline"></ion-icon>`
-    document.body.classList.add('dark')
-    menu.classList.remove('open')
-    menubtn.style.transform = 'rotate(0deg)'
-    menubtn.classList.add('uil-bars')
-    menubtn.classList.remove('uil-times')
-    sw.style.backgroundColor = '#1F2021'
-  } else {
-    swcircle.classList.remove('on')
-    swcircle.innerHTML = `<ion-icon name="moon-outline"></ion-icon>`
-    document.body.classList.remove('dark')
-    menu.classList.remove('open')
-    menubtn.style.transform = 'rotate(0deg)'
-    menubtn.classList.add('uil-bars')
-    menubtn.classList.remove('uil-times')
-    sw.style.backgroundColor = '#fff'
-  }
-})
